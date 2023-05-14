@@ -8,6 +8,7 @@ public class LogicScript : MonoBehaviour
 {
     public int playerScore;
     public Text scoreText;
+    public Text highScoreText;
     public GameObject gameOverScreen;
 
     [ContextMenu("Increase Score")]
@@ -23,15 +24,24 @@ public class LogicScript : MonoBehaviour
 
     }
 
+    public void setHighScore()
+    {
+        // Set the high score
+        // High score can be updated
+        PlayerPrefs.SetInt("HighScore", playerScore);
+        highScoreText.text = playerScore.ToString();
+    }
+
     public void restartGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-
     }
 
     public void gameOver()
     { 
-        gameOverScreen.SetActive(true); 
+        gameOverScreen.SetActive(true);
+
+        Time.timeScale = 0;
     
     }
 
